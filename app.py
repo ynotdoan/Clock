@@ -2,17 +2,17 @@
 import tkinter as tk
 
 
-window = tk.Tk()
-
-window.title("Clock app")
-window.configure(width = 500, height = 300)
-window.configure(bg = "orange")
-
-test_button = tk.Button(window, 
-                        text = "Hello there", 
-                        command = exit, 
-                        height = 10, 
-                        width = 40, 
-                        bg = "blue", 
-                        fg = "purple")
-test_button.place(x = 20, y = 20)
+class Window(tk.Tk):
+  '''
+  Builds GUI for app.
+  '''
+  def __init__(self):
+    super(Window, self).__init__()
+    self.title("Clock App")
+    self.minsize(1200, 700) # width x height
+    
+    self.bg()
+    
+    
+  def bg(self):
+    self.configure(background = "black")

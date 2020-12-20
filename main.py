@@ -2,4 +2,4 @@
 import app
 
 
-app.window.mainloop()
+app.Window().mainloop()

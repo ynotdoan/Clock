@@ -2,4 +2,5 @@
 import app
 
 
-app.Window().mainloop()
+run = app.Window()
+run.mainloop()

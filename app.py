@@ -17,11 +17,11 @@ class Window(tk.Tk):
     tk.Tk.__init__(self)
     self.title("Clock App")
     self.minsize(1200, 800) # widthxheight
-    # self.iconphoto(False, tk.PhotoImage(file = "clockApp-logo.PNG"))
+    self.iconphoto(False, tk.PhotoImage(file = "clockApp-logo.PNG"))
     self.resizable(False, False)
     
     Tab()
-    c.Clock().draw_hands()
+    c.AnalogClock().draw_hands()
 
 
 class Tab(tk.Frame):

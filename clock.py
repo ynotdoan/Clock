@@ -30,7 +30,7 @@ def convert_time():
   return hour, minute, sc
 
 
-class Clock(tk.Canvas):
+class AnalogClock(tk.Canvas):
   '''
   Canvas to display clock.
   '''
@@ -68,7 +68,13 @@ class Clock(tk.Canvas):
                        500 + t_end * math.sin(2 * math.pi * i / 12),
                        fill = "red", 
                        width = 5)
-            
+
+  def delete_lines(self):
+    '''
+    Deletes current lines.
+    '''
+    self.delete(self.line)  
+        
   def update_hands(self, length, angle, color):
     '''
     Updates hands of clock.
@@ -79,7 +85,7 @@ class Clock(tk.Canvas):
     x = 500 + length * math.cos(angle)
     y = 500 + length * math.sin(angle)
     self.coords(self.line, 500, 500, x, y)
-    
+
   def draw_hands(self):
     '''
     Draws hands on clock.
@@ -89,14 +95,16 @@ class Clock(tk.Canvas):
     # hour hand
     self.update_hands(120, 
                       2 * math.pi * hour / 12 - math.pi / 2, 
-                      "blue")
+                      "white")
     # minute hand
     self.update_hands(170, 
                       2 * math.pi * minute / 60 - math.pi / 2, 
-                      "blue")
-    # second hand
+                      "white")
+    # seconds hand
     self.update_hands(220, 
                       2 * math.pi * second / 60 - math.pi / 2, 
                       "red")
     
+    # calls delete_lines() and draw_hands() to update hands every 1000 ms
+    self.after(1000, self.delete_lines)
     self.after(1000, self.draw_hands)

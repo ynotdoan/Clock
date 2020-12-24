@@ -17,25 +17,25 @@ class Window(tk.Tk):
     tk.Tk.__init__(self)
     self.title("Clock App")
     self.minsize(1200, 800) # widthxheight
-    self.iconphoto(False, tk.PhotoImage(file = "clockApp-logo.PNG"))
+    # self.iconphoto(False, tk.PhotoImage(file = "clockApp-logo.PNG"))
     self.resizable(False, False)
     
     Tab()
-    c.Clock()
+    c.Clock().draw_hands()
 
-  
+
 class Tab(tk.Frame):
   '''
   Side tab with buttons.
   '''
   def __init__(self):
     tk.Frame.__init__(self)
-    self.configure(background = "purple",)
+    self.configure(background = "white",)
     self.pack(side = "left", fill = "both", expand = True)
     
     clock_button = tk.Button(self, 
                              text = "Clock", 
-                             background = "white", 
+                             background = "orange", 
                              width = 20, 
                              font = d_font, 
                              command = "")
@@ -43,7 +43,7 @@ class Tab(tk.Frame):
     
     timer_button = tk.Button(self, 
                              text = "Timer", 
-                             background = "white", 
+                             background = "orange", 
                              width = 20, 
                              font = d_font, 
                              command = "")
@@ -51,9 +51,8 @@ class Tab(tk.Frame):
     
     exit_button = tk.Button(self, 
                             text = "EXIT", 
-                            background = "grey", 
+                            background = "orange", 
                             width = 20, 
                             font = d_font, 
                             command = quit)
     exit_button.pack(padx = 5, pady = 10)
-

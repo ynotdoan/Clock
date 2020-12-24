@@ -1,86 +1,59 @@
 
-import tkinter as tk
+'''
+Module for main window and side tab buttons.
+'''
 
+import tkinter as tk
+import clock as c
+
+
+d_font = ("Times", 10) # defualt font for entire program
 
 class Window(tk.Tk):
   '''
-  Builds GUI for app.
+  Generates main window.
   '''
-  def __init__(self, *args, **kwargs):
-    tk.Tk.__init__(self, *args, **kwargs)
+  def __init__(self):
+    tk.Tk.__init__(self)
     self.title("Clock App")
-    self.minsize(1200, 700) # width x height
-    self.configure(background = "black")
+    self.minsize(1200, 800) # widthxheight
+    self.iconphoto(False, tk.PhotoImage(file = "clockApp-logo.PNG"))
+    self.resizable(False, False)
     
-    container = tk.Frame(self)
-    container.pack(side = "right", fill = "both", expand = True)
-    
-    self.frames = {}
-    for F in (Clock, Timer):
-      frame = F(container, self)
-      self.frames[F] = frame
-      frame.grid(row = 0, column = 0, sticky ="nsew")
-      
-    self.show_frame(Clock)
-    
-    TabButtons(self, self)
+    Tab()
+    c.Clock()
 
-    
-  def show_frame(self, frame_name):
-    '''
-    Switches between frames.
-    '''
-    frame = self.frames[frame_name]
-    frame.tkraise()
-    
-    
-class Clock(tk.Frame):
+  
+class Tab(tk.Frame):
   '''
-  Frame to display clock showing current time.
+  Side tab with buttons.
   '''
-  def __init__(self, parent, controller):
-    tk.Frame.__init__(self, parent)
-    label = tk.Label(self, text = "Page 1") 
-    label.grid(row = 0, column = 4, padx = 10, pady = 10)
+  def __init__(self):
+    tk.Frame.__init__(self)
+    self.configure(background = "purple",)
+    self.pack(side = "left", fill = "both", expand = True)
     
-    
-class Timer(tk.Frame):
-  '''
-  Frame to display timer.
-  '''
-  def __init__(self, parent, controller):
-    tk.Frame.__init__(self, parent)
-    label = tk.Label(self, text = "Page 2") 
-    label.grid(row = 0, column = 4, padx = 10, pady = 10)
-      
-      
-class TabButtons(tk.Frame):
-  '''
-  Constant frame that displays buttons to switch between Clock/Timer.
-  '''
-  def __init__(self, parent, controller):
-    tk.Frame.__init__(self, parent)
-    
-    tab = tk.Frame(background = "purple", width = 100)
-    tab.pack(side = "left", fill = "y")
-    
-    clock_button = tk.Button(tab, 
+    clock_button = tk.Button(self, 
                              text = "Clock", 
-                             background = "pink", 
-                             width = 10, 
-                             command = lambda: controller.show_frame(Clock))
-    clock_button.place(x = 10, y = 10)
+                             background = "white", 
+                             width = 20, 
+                             font = d_font, 
+                             command = "")
+    clock_button.pack(padx = 5, pady = 10)
     
-    timer_button = tk.Button(tab, 
+    timer_button = tk.Button(self, 
                              text = "Timer", 
-                             background = "green", 
-                             width = 10, 
-                             command = lambda: controller.show_frame(Timer))
-    timer_button.place(x = 10, y = 45)
+                             background = "white", 
+                             width = 20, 
+                             font = d_font, 
+                             command = "")
+    timer_button.pack(padx = 5, pady = 10)
     
-    exit_button = tk.Button(tab, 
+    exit_button = tk.Button(self, 
                             text = "EXIT", 
-                            background = "brown", 
-                            width = 10, 
+                            background = "grey", 
+                            width = 20, 
+                            font = d_font, 
                             command = quit)
-    exit_button.place(x = 10, y = 85)
+    exit_button.pack(padx = 5, pady = 10)
+

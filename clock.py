@@ -68,43 +68,32 @@ class AnalogClock(tk.Canvas):
                        500 + t_end * math.sin(2 * math.pi * i / 12),
                        fill = "red", 
                        width = 5)
+      
+    self.length = 130
+    self.line = self.create_line(500, 500, 500, 500, 
+                                 fill = "white", 
+                                 width = 4)
 
-  def delete_lines(self):
-    '''
-    Deletes current lines.
-    '''
-    self.delete(self.line)  
-        
-  def update_hands(self, length, angle, color):
+  def update_hands(self, angle):
     '''
     Updates hands of clock.
     '''
-    self.line = self.create_line(500, 500, 500, 500, 
-                            fill = color, 
-                            width = 4)
-    x = 500 + length * math.cos(angle)
-    y = 500 + length * math.sin(angle)
+    x = 500 + self.length * math.cos(angle)
+    y = 500 + self.length * math.sin(angle)
     self.coords(self.line, 500, 500, x, y)
-
+    
   def draw_hands(self):
     '''
     Draws hands on clock.
     '''
     hour, minute, second = convert_time()
-    
+
     # hour hand
-    self.update_hands(120, 
-                      2 * math.pi * hour / 12 - math.pi / 2, 
-                      "white")
+    self.update_hands(2 * math.pi * hour / 12 - math.pi / 2)
     # minute hand
-    self.update_hands(170, 
-                      2 * math.pi * minute / 60 - math.pi / 2, 
-                      "white")
+    self.update_hands(2 * math.pi * minute / 60 - math.pi / 2)    
     # seconds hand
-    self.update_hands(220, 
-                      2 * math.pi * second / 60 - math.pi / 2, 
-                      "red")
-    
-    # calls delete_lines() and draw_hands() to update hands every 1000 ms
-    self.after(1000, self.delete_lines)
-    self.after(1000, self.draw_hands)
+    self.update_hands(2 * math.pi * second / 60 - math.pi / 2)   
+
+    # calls draw_hands() to update hands every 1000 ms
+    self.after(1000, self.draw_hands)   

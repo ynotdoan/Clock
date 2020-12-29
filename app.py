@@ -4,7 +4,8 @@ Module for main window and side tab buttons.
 '''
 
 import tkinter as tk
-import clock as c
+import analog_clock as ac
+import digital_clock as dc
 
 
 d_font = ("Times", 10) # defualt font for entire program
@@ -21,7 +22,14 @@ class Window(tk.Tk):
     self.resizable(False, False)
     
     Tab()
-    c.AnalogClock().draw_hands()
+
+
+def open_analog_clock():
+  ac.AnalogClock(object).draw_hands()
+  ac.canvas
+  
+def open_digital_clock():
+  dc.frame
 
 
 class Tab(tk.Frame):
@@ -38,7 +46,7 @@ class Tab(tk.Frame):
                              background = "orange", 
                              width = 20, 
                              font = d_font, 
-                             command = "")
+                             command = open_analog_clock)
     clock_button.pack(padx = 5, pady = 10)
     
     timer_button = tk.Button(self, 
@@ -46,7 +54,7 @@ class Tab(tk.Frame):
                              background = "orange", 
                              width = 20, 
                              font = d_font, 
-                             command = "")
+                             command = open_digital_clock)
     timer_button.pack(padx = 5, pady = 10)
     
     exit_button = tk.Button(self, 

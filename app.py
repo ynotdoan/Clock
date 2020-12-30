@@ -1,66 +1,54 @@
 
-'''
-Module for main window and side tab buttons.
-'''
-
 import tkinter as tk
-import analog_clock as ac
-import digital_clock as dc
+import math
 
 
-d_font = ("Times", 10) # defualt font for entire program
+s_font = ("times", 12)
 
-class Window(tk.Tk):
-  '''
-  Generates main window.
-  '''
-  def __init__(self):
-    tk.Tk.__init__(self)
-    self.title("Clock App")
-    self.minsize(1200, 800) # widthxheight
-    self.iconphoto(False, tk.PhotoImage(file = "clockApp-logo.PNG"))
-    self.resizable(False, False)
-    
-    Tab()
+wn = tk.Tk()
+wn.title("Clock App")
+wn.minsize(1200, 800) #widthxheight
+wn.iconphoto(False, tk.PhotoImage(file = "clockApp-logo.png"))
+wn.resizable(False, False)
 
 
-def open_analog_clock():
-  ac.AnalogClock(object).draw_hands()
-  ac.canvas
-  
-def open_digital_clock():
-  dc.frame
+# tab frame
+tab_frame = tk.Frame(wn, 
+                     bg = "white", 
+                     width = 200, 
+                     )
+tab_frame.pack(side = "left", fill = "y")
+# clock button
+tk.Button(tab_frame, 
+          text = "Clock", 
+          bg = "orange", 
+          fg = "white", 
+          width = 20, 
+          font = s_font, 
+          command = "", 
+          ).pack(padx = 5, pady = 10)
+# timer button
+tk.Button(tab_frame, 
+          text = "Timer", 
+          bg = "orange", 
+          fg = "white", 
+          width = 20, 
+          font = s_font, 
+          command = "", 
+          ).pack(padx = 5, pady = 10)
+# quit button
+tk.Button(tab_frame, 
+          text = "EXIT", 
+          bg = "grey", 
+          fg = "white", 
+          width = 20, 
+          font = s_font, 
+          command = quit, 
+          ).pack(padx = 5, pady = 10)
 
 
-class Tab(tk.Frame):
-  '''
-  Side tab with buttons.
-  '''
-  def __init__(self):
-    tk.Frame.__init__(self)
-    self.configure(background = "white",)
-    self.pack(side = "left", fill = "both", expand = True)
-    
-    clock_button = tk.Button(self, 
-                             text = "Clock", 
-                             background = "orange", 
-                             width = 20, 
-                             font = d_font, 
-                             command = open_analog_clock)
-    clock_button.pack(padx = 5, pady = 10)
-    
-    timer_button = tk.Button(self, 
-                             text = "Timer", 
-                             background = "orange", 
-                             width = 20, 
-                             font = d_font, 
-                             command = open_digital_clock)
-    timer_button.pack(padx = 5, pady = 10)
-    
-    exit_button = tk.Button(self, 
-                            text = "EXIT", 
-                            background = "orange", 
-                            width = 20, 
-                            font = d_font, 
-                            command = quit)
-    exit_button.pack(padx = 5, pady = 10)
+# canvas for analog clock
+analog_canvas = tk.Canvas(wn, 
+                          bg = "black", 
+                          width = 1000
+                          )

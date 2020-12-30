@@ -1,5 +1,6 @@
 
-import app
+import app, analog_clock
 
 
-app.Window().mainloop()
+analog_clock.AnalogClock().draw_hands()
+app.wn.mainloop()

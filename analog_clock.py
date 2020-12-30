@@ -1,30 +1,21 @@
 
 import tkinter as tk
-import app as a
+import frames as f
 import math
 import time
 
 
-a.analog_canvas.pack(side = "right", fill = "both")
 # clock outline
-a.analog_canvas.create_oval(250, 250, 750, 750, 
+f.analog_canvas.create_oval(250, 250, 750, 750, 
                             outline = "grey", 
                             width = 10, 
                             )
-# switch to digital button
-tk.Button(a.analog_canvas, 
-          text = "switch to digital", 
-          bg = "orange", 
-          fg = "white", 
-          font = a.s_font, 
-          command = "", 
-          ).place(x = 500, y = 20)
 
 start = 240 # point near edge of clock
 end = 220 # end point for line
 # creates lines for minutes
 for i in range(60):
-  a.analog_canvas.create_line(500 + start * math.cos(2 * math.pi * i / 60), 
+  f.analog_canvas.create_line(500 + start * math.cos(2 * math.pi * i / 60), 
                               500 + start * math.sin(2 * math.pi * i / 60), 
                               500 + (end + 10) * math.cos(2 * math.pi * i / 60), 
                               500 + (end + 10) *math.sin(2 * math.pi * i / 60), 
@@ -33,7 +24,7 @@ for i in range(60):
                               )
 # creates lines for hours
 for i in range(12):
-  a.analog_canvas.create_line(500 + start * math.cos(2 * math.pi * i / 12), 
+  f.analog_canvas.create_line(500 + start * math.cos(2 * math.pi * i / 12), 
                               500 + start * math.sin(2 * math.pi * i / 12), 
                               500 + end * math.cos(2 * math.pi * i / 12), 
                               500 + end *math.sin(2 * math.pi * i / 12), 
@@ -66,13 +57,16 @@ def convert_time():
 
 
 class AnalogClock():
+  '''
+  Updates and draws hands onto canvas.
+  '''
   def __init__(self):
-    self.line = a.analog_canvas.create_line(500, 500, 500, 500, 
+    self.line = f.analog_canvas.create_line(500, 500, 500, 500, 
                                             fill = "white", 
                                             width = 5, 
                                             )
     # sec_line uses diff colour and is specific to the seconds hand
-    self.sec_line = a.analog_canvas.create_line(500, 500, 500, 500, 
+    self.sec_line = f.analog_canvas.create_line(500, 500, 500, 500, 
                                                 fill = "red", 
                                                 width = 2, 
                                                 )  
@@ -83,9 +77,9 @@ class AnalogClock():
     # used length of seconds hand to plot specific line for seconds
     # else it uses the defualt line (white colour)
     if (length == 230):
-      a.analog_canvas.coords(self.sec_line, 500, 500, x, y)
+      f.analog_canvas.coords(self.sec_line, 500, 500, x, y)
     else:
-      a.analog_canvas.coords(self.line, 500, 500, x, y)
+      f.analog_canvas.coords(self.line, 500, 500, x, y)
     
   def draw_hands(self):
     hour, minute, second = convert_time()
@@ -102,8 +96,10 @@ class AnalogClock():
     second_hand.update_hands(2 * math.pi * second / 60 - math.pi / 2, 
                              230, 
                              )
-    a.analog_canvas.after(1000, self.draw_hands) 
+    # refreshes/draws hands again after 1000 ms
+    f.analog_canvas.after(1000, self.draw_hands) 
 
+# hands for clock
 hour_hand = AnalogClock()
 minute_hand = AnalogClock()
 second_hand = AnalogClock()

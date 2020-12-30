@@ -2,7 +2,7 @@
 import tkinter as tk
 import frames as f
 import switch_frame as sf
-import analog_clock as ac
+import digital_clock as dc
 
 # Buttons in left tab
 # clock button
@@ -45,7 +45,7 @@ tk.Button(f.analog_canvas,
           width = 15, 
           font = f.s_font, 
           command = lambda: sf.show_digital_clock(f.analog_canvas), 
-          ).pack(side = "top", anchor = "center", pady = (100, 0))
+          ).pack(anchor = "center", pady = (100, 0))
 
 
 # Buttons in digital clock
@@ -57,5 +57,4 @@ tk.Button(f.digital_frame,
           width = 15, 
           font = f.s_font, 
           command = lambda: sf.show_analog_clock(f.digital_frame), 
-          ).pack(side = "bottom", anchor = "center", pady = (100, 220))
-# switch digital time 
+          ).place(x = 350, y = 100)

@@ -3,22 +3,37 @@ import tkinter as tk
 import frames as f
 import analog_clock as ac
 import digital_clock as dc
+import timer as tm
 
+
+# holds the current frame
+current_frame = []
 
 def show_analog_clock(frame):
   frame.pack_forget()
+  
   f.analog_canvas.pack(fill = "both", expand = True)
   ac.AnalogClock().draw_hands()
+  
+  # clears elements from list current_frame and appends current frame
+  current_frame.clear()
+  current_frame.append(f.analog_canvas)
   
   
 def show_digital_clock(frame):
   frame.pack_forget()
+  
   f.digital_frame.pack(fill = "both", expand = True)
-  dc.digital_label.pack(side = "bottom", anchor = "n", expand = True)
+  dc.digital_label.pack(side = "bottom", anchor = "n", expand = True)  
   dc.get_time()
+  
+  current_frame.clear()
+  current_frame.append(f.digital_frame)
+
   show_digital_time(dc.military_label)
 
 
+# Buttons/labels for digital clock ----------
 digital_button = tk.Button(f.digital_frame, 
                            text = "Switch to digital clock", 
                            bg = "orange", 
@@ -49,6 +64,7 @@ current_military = tk.Label(f.digital_frame,
                             fg = "white",
                             font = f.s_font, 
                             )
+# ----------
 
 def show_military_time(label):
   '''
@@ -82,3 +98,14 @@ def show_digital_time(label):
   f.digital_frame.pack(fill = "both", expand = True)
   dc.digital_label.pack(side = "bottom", anchor = "center", expand = True)
   dc.get_digital_time()
+
+
+def show_timer(frame):
+  frame.pack_forget()
+  
+  f.timer_frame.pack(fill = "both", expand = True)
+  tm.timer_pack() 
+  
+  current_frame.clear()
+  current_frame.append(f.timer_frame)
+  

@@ -3,7 +3,8 @@ import tkinter as tk
 import math
 
 
-s_font = ("times", 12)
+b_font = ("times", 70, "bold")
+s_font = ("times", 12, "bold")
 
 wn = tk.Tk()
 wn.title("Clock App")
@@ -31,3 +32,10 @@ digital_frame = tk.Frame(wn,
                          bg = "black", 
                          width = 1000, 
                          )
+
+
+# timer frame
+timer_frame = tk.Frame(wn, 
+                       bg = "black", 
+                       width = 1000, 
+                       )

@@ -12,7 +12,7 @@ tk.Button(f.tab_frame,
           fg = "white", 
           width = 20, 
           font = f.s_font, 
-          command = lambda: sf.show_analog_clock(f.digital_frame), 
+          command = lambda: sf.show_analog_clock(sf.current_frame[0]), # f.digital_frame
           ).pack(padx = 5, pady = 10)
 # timer button
 tk.Button(f.tab_frame, 
@@ -21,7 +21,7 @@ tk.Button(f.tab_frame,
           fg = "white", 
           width = 20, 
           font = f.s_font, 
-          command = "", 
+          command = lambda: sf.show_timer(sf.current_frame[0]), # f.analog_canvas
           ).pack(padx = 5, pady = 10)
 # quit button
 tk.Button(f.tab_frame, 
@@ -44,7 +44,7 @@ tk.Button(f.analog_canvas,
           fg = "white", 
           width = 15, 
           font = f.s_font, 
-          command = lambda: sf.show_digital_clock(f.analog_canvas), 
+          command = lambda: sf.show_digital_clock(sf.current_frame[0]), 
           ).pack(anchor = "center", pady = (100, 0))
 
 
@@ -56,5 +56,5 @@ tk.Button(f.digital_frame,
           fg = "white", 
           width = 15, 
           font = f.s_font, 
-          command = lambda: sf.show_analog_clock(f.digital_frame), 
+          command = lambda: sf.show_analog_clock(sf.current_frame[0]), 
           ).place(x = 350, y = 100)

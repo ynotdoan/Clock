@@ -1,10 +1,8 @@
 
 import tkinter as tk
-import frames as f
 import time
+import frames as f
 
-
-b_font = ("times", 70, "bold")
 
 def get_time():
   hr = time.localtime()[3]
@@ -23,10 +21,10 @@ def get_military_time():
   # convert hr to 24 hr
   mhr = (hr % 12) + 12
   
-  military_time = f"{mhr}:{mn}:{sc}"
+  military_time = f"{mhr:02.0f}:{mn:02.0f}:{sc:02.0f}"
   
   military_label.config(text = military_time, 
-                        font = b_font, 
+                        font = f.b_font, 
                         )
   military_label.after(1000, get_military_time)
   
@@ -46,7 +44,7 @@ def get_digital_time():
     time = f"{dhr:02.0f}:{mn:02.0f}:{sc:02.0f} PM"
 
   digital_label.config(text = time, 
-                       font = b_font, 
+                       font = f.b_font, 
                        )
   digital_label.after(1000, get_digital_time)
   

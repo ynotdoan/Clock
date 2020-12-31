@@ -1,8 +1,8 @@
 
 import tkinter as tk
-import frames as f
 import math
 import time
+import frames as f
 
 
 # clock outline

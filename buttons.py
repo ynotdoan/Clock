@@ -3,6 +3,7 @@ import tkinter as tk
 import frames as f
 import switch_frame as sf
 import digital_clock as dc
+import timer as tm
 
 # Buttons in left tab
 # clock button
@@ -12,7 +13,7 @@ tk.Button(f.tab_frame,
           fg = "white", 
           width = 20, 
           font = f.s_font, 
-          command = lambda: sf.show_analog_clock(sf.current_frame[0]), # f.digital_frame
+          command = lambda: sf.show_analog_clock(sf.current_frame[0]), 
           ).pack(padx = 5, pady = 10)
 # timer button
 tk.Button(f.tab_frame, 
@@ -21,7 +22,7 @@ tk.Button(f.tab_frame,
           fg = "white", 
           width = 20, 
           font = f.s_font, 
-          command = lambda: sf.show_timer(sf.current_frame[0]), # f.analog_canvas
+          command = lambda: sf.show_timer(sf.current_frame[0]), 
           ).pack(padx = 5, pady = 10)
 # quit button
 tk.Button(f.tab_frame, 
@@ -58,3 +59,78 @@ tk.Button(f.digital_frame,
           font = f.s_font, 
           command = lambda: sf.show_analog_clock(sf.current_frame[0]), 
           ).place(x = 350, y = 100)
+
+
+# Buttons and label in timer
+# instructions label
+tk.Label(f.timer_frame, 
+          text = "Use the '+' or '-' buttons to select a time limit and press 'GO' to start.",
+          bg = "black", 
+          fg = "white", 
+          font = f.s_font, 
+          ).pack(side = "top", anchor = "center", pady = (100, 0))
+# set buttons
+# hour +
+tk.Button(f.timer_frame, 
+          text = "+", 
+          bg = "orange", 
+          fg = "black", 
+          width = 12, 
+          font = f.s_font, 
+          command = lambda: tm.increase_hour(tm.hr), 
+          ).place(x = 240, y = 200)
+# hour -
+tk.Button(f.timer_frame, 
+          text = "-", 
+          bg = "orange", 
+          fg = "black", 
+          width = 12, 
+          font = f.s_font,  
+          command = "", 
+          ).place(x = 240, y = 480)
+# minute +
+tk.Button(f.timer_frame, 
+          text = "+", 
+          bg = "orange", 
+          fg = "black", 
+          width = 12, 
+          font = f.s_font, 
+          command = "", 
+          ).place(x = 440, y = 200)
+# minute -
+tk.Button(f.timer_frame, 
+          text = "-", 
+          bg = "orange", 
+          fg = "black", 
+          width = 12, 
+          font = f.s_font,  
+          command = "", 
+          ).place(x = 440, y = 480)
+# seconds +
+tk.Button(f.timer_frame, 
+          text = "+", 
+          bg = "orange", 
+          fg = "black", 
+          width = 12, 
+          font = f.s_font, 
+          command = "", 
+          ).place(x = 650, y = 200)
+# seconds -
+tk.Button(f.timer_frame, 
+          text = "-", 
+          bg = "orange", 
+          fg = "black", 
+          width = 12, 
+          font = f.s_font,  
+          command = "", 
+          ).place(x = 650, y = 480)
+# GO button
+tk.Button(f.timer_frame, 
+          text = "GO", 
+          bg = "white", 
+          fg = "orange", 
+          width = 15, 
+          height = 2, 
+          font = f.s_font, 
+          command = "", 
+          ).pack(side = "bottom", anchor = "center", pady = (0, 150))

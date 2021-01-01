@@ -69,6 +69,25 @@ tk.Label(f.timer_frame,
           fg = "white", 
           font = f.s_font, 
           ).pack(side = "top", anchor = "center", pady = (100, 0))
+# labels for hr, mn, sc
+tk.Label(f.timer_frame, 
+         text = "HOUR", 
+         bg = "black", 
+         fg = "white", 
+         font = f.s_font, 
+         ).place(x = 240, y = 270)
+tk.Label(f.timer_frame, 
+         text = "MINUTE", 
+         bg = "black", 
+         fg = "white", 
+         font = f.s_font, 
+         ).place(x = 440, y = 270)
+tk.Label(f.timer_frame, 
+         text = "SECOND", 
+         bg = "black", 
+         fg = "white", 
+         font = f.s_font, 
+         ).place(x = 650, y = 270)
 # set buttons
 # hour +
 tk.Button(f.timer_frame, 
@@ -77,7 +96,7 @@ tk.Button(f.timer_frame,
           fg = "black", 
           width = 12, 
           font = f.s_font, 
-          command = lambda: tm.increase_hour(tm.hr), 
+          command = lambda: tm.increase_hour(), 
           ).place(x = 240, y = 200)
 # hour -
 tk.Button(f.timer_frame, 
@@ -86,7 +105,7 @@ tk.Button(f.timer_frame,
           fg = "black", 
           width = 12, 
           font = f.s_font,  
-          command = "", 
+          command = lambda: tm.decrease_hour(), 
           ).place(x = 240, y = 480)
 # minute +
 tk.Button(f.timer_frame, 
@@ -95,7 +114,7 @@ tk.Button(f.timer_frame,
           fg = "black", 
           width = 12, 
           font = f.s_font, 
-          command = "", 
+          command = lambda: tm.increase_minute(), 
           ).place(x = 440, y = 200)
 # minute -
 tk.Button(f.timer_frame, 
@@ -104,7 +123,7 @@ tk.Button(f.timer_frame,
           fg = "black", 
           width = 12, 
           font = f.s_font,  
-          command = "", 
+          command = lambda: tm.decrease_minute(), 
           ).place(x = 440, y = 480)
 # seconds +
 tk.Button(f.timer_frame, 
@@ -113,7 +132,7 @@ tk.Button(f.timer_frame,
           fg = "black", 
           width = 12, 
           font = f.s_font, 
-          command = "", 
+          command = lambda: tm.increase_second(), 
           ).place(x = 650, y = 200)
 # seconds -
 tk.Button(f.timer_frame, 
@@ -122,7 +141,7 @@ tk.Button(f.timer_frame,
           fg = "black", 
           width = 12, 
           font = f.s_font,  
-          command = "", 
+          command = lambda: tm.decrease_second(), 
           ).place(x = 650, y = 480)
 # GO button
 tk.Button(f.timer_frame, 

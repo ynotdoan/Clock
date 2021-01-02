@@ -4,61 +4,71 @@ import time
 import frames as f
 
 
+nhr = 0
+nmn = 0
+nsc = 0
 hr_count = 0
 mn_count = 0
 sc_count = 0
 
-
 def increase_hour():
-  global hr_count
-  hr_count += 1
+  global nhr
+  
+  nhr += 1
+  hr_count = nhr % 13
   hour.configure(text = f"{hr_count:02.0f}")
   
 def decrease_hour():
-  global hr_count
-  
-  # checks if hr is 0 so negative numbers can't be set
-  if (hr_count == 0):
-    hr_count = 0
-  elif (hr_count > 0):  
-    hr_count -= 1
-  
+  global nhr
+
+  nhr -= 1
+  hr_count = nhr % 13
   hour.configure(text = f"{hr_count:02.0f}")
   
 def increase_minute():
-  global mn_count
-  mn_count += 1
+  global nmn
+  
+  nmn += 1
+  mn_count = nmn % 60
   minute.configure(text = f"{mn_count:02.0f}")
   
 def decrease_minute():
-  global mn_count
+  global nmn
   
-  if (mn_count == 0):
-    mn_count = 0
-  elif (mn_count > 0):
-    mn_count -= 1
-  
+  nmn -= 1
+  mn_count = nmn % 60
   minute.configure(text = f"{mn_count:02.0f}")
   
 def increase_second():
-  global sc_count
-  sc_count += 1
+  global nsc
+  
+  nsc += 1
+  sc_count = nsc % 60
   second.configure(text = f"{sc_count:02.0f}")
   
 def decrease_second():
-  global sc_count
+  global nsc
   
-  if (sc_count == 0):
-    sc_count = 0
-  elif (sc_count > 0):
-    sc_count -= 1
-  
+  nsc -= 1
+  sc_count = nsc % 60
   second.configure(text = f"{sc_count:02.0f}")
-
+  
+  
+def start_timer():
+  global hr_count, mn_count, sc_count, nhr, nmn, nsc
+  
+  print (sc_count)
+  # while (hr_count != 0 and mn_count != 0 and sc_count != 0):
+  #   nsc -= 1
+  #   sc_count = nsc % 60
+  #   second.configure(text = f"{sc_count:02.0f}")
+  #   #second.after(1000, )
+  
+    
 
 # hour timer label
 hour = tk.Label(f.timer_frame,
-                text = f"{hr_count:02.0f}", 
+                text = f"{nhr:02.0f}", 
                 bg = "white", 
                 fg = "black", 
                 width = 2,  
@@ -66,7 +76,7 @@ hour = tk.Label(f.timer_frame,
                 )
 # minute timer label
 minute = tk.Label(f.timer_frame, 
-                  text = f"{mn_count:02.0f}", 
+                  text = f"{nmn:02.0f}", 
                   bg = "white", 
                   fg = "black", 
                   width = 2, 
@@ -74,7 +84,7 @@ minute = tk.Label(f.timer_frame,
                   )
 # seconds timer label
 second = tk.Label(f.timer_frame, 
-                  text = f"{sc_count:02.0f}", 
+                  text = f"{nsc:02.0f}", 
                   bg = "white", 
                   fg = "black", 
                   width = 2, 

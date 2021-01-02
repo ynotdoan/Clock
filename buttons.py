@@ -151,5 +151,5 @@ tk.Button(f.timer_frame,
           width = 15, 
           height = 2, 
           font = f.s_font, 
-          command = "", 
+          command = lambda: tm.start_timer(), 
           ).pack(side = "bottom", anchor = "center", pady = (0, 150))

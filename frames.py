@@ -32,10 +32,3 @@ digital_frame = tk.Frame(wn,
                          bg = "black", 
                          width = 1000, 
                          )
-
-
-# timer frame
-timer_frame = tk.Frame(wn, 
-                       bg = "black", 
-                       width = 1000, 
-                       )

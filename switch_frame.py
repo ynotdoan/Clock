@@ -3,7 +3,6 @@ import tkinter as tk
 import frames as f
 import analog_clock as ac
 import digital_clock as dc
-import timer as tm
 
 
 # holds the current frame
@@ -98,35 +97,4 @@ def show_digital_time(label):
   f.digital_frame.pack(fill = "both", expand = True)
   dc.digital_label.pack(side = "bottom", anchor = "center", expand = True)
   dc.get_digital_time()
-
-
-def show_timer(frame):
-  '''
-  Includes all the labels for timer.
-  '''
-  frame.pack_forget()
-  
-  # time labels
-  tm.hour.place(x = 240, y = 300)
-  # first :
-  tk.Label(f.timer_frame, 
-           text = ":", 
-           bg = "black", 
-           fg = "white", 
-           font = f.b_font, 
-           ).place(x = 380, y = 300)
-  tm.minute.place(x = 440, y = 300)
-  # second :
-  tk.Label(f.timer_frame, 
-           text = ":", 
-           bg = "black", 
-           fg = "white", 
-           font = f.b_font, 
-           ).place(x = 585, y = 300)
-  tm.second.place(x = 650, y = 300)
-
-  f.timer_frame.pack(fill = "both", expand = True)
-  
-  current_frame.clear()
-  current_frame.append(f.timer_frame)
   
